@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "regenerator-runtime/runtime";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import SpeechRecognition, {
@@ -14,10 +15,6 @@ export default function Mic() {
   } = useSpeechRecognition();
   const [clicked_mic, setClicked_mic] = useState(0);
   const [finish_animation, setFinish_animation] = useState(1);
-
-  if (!browserSupportSpeechRecognition) {
-    return "unsupported";
-  }
 
   let popover_onstart = {
     hidden: {
@@ -39,6 +36,7 @@ export default function Mic() {
     <div className="mic_container">
       <div className="circle">
         <Image
+          key="1"
           className="circle"
           src="/images/icons/gradient_circle.png"
           layout="fill"
@@ -47,9 +45,12 @@ export default function Mic() {
         <motion.div initial="" animate="" variants={mic} className="mic">
           {clicked_mic == 1 ? (
             <Image
+              key="2"
               onClick={() => {
                 setClicked_mic(0);
                 setFinish_animation(0);
+                SpeechRecognition.startListening;
+                console.log("here it is ! ", transcript);
               }}
               className="mic_photo"
               src="/images/icons/micstarts.gif"
@@ -58,6 +59,7 @@ export default function Mic() {
             />
           ) : finish_animation == 1 ? (
             <Image
+              key="3"
               onClick={() => setClicked_mic(1)}
               className="mic_photo"
               src="/images/icons/mic.gif"
@@ -69,7 +71,13 @@ export default function Mic() {
               setFinish_animation(1);
             }, 550) && (
               <Image
-                onClick={() => setClicked_mic(1)}
+                key="4"
+                onClick={() => {
+                  setClicked_mic(1);
+                  SpeechRecognition.stopListening;
+                  console.log("here is the transcript : ", transcript);
+                  console.log(transcript);
+                }}
                 className="mic_photo"
                 src="/images/icons/micstop.gif"
                 layout="fill"
@@ -80,7 +88,9 @@ export default function Mic() {
         </motion.div>
       </div>
       <motion.div initial="hidden" animate="visible" variants={popover_onstart}>
-        <div className="popover">Ask something about me</div>
+        <div className="popover">
+          {transcript ? transcript : "Ask something about me"}
+        </div>
       </motion.div>
     </div>
   );

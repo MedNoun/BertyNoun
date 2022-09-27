@@ -4,15 +4,14 @@ import MedNoun from "../components/MedNoun";
 import Image from "next/image";
 import Mic from "../components/Mic";
 
-
 function Home({ response }) {
   let image = { width: "450", height: "910" };
 
   return (
     <div className="main">
-      <Navbar data={response.navbar} />
-      <MedNoun url={response.imgUrl} />
-      <Mic />
+      <Navbar key="navbar" data={response.navbar} />
+      <MedNoun key="MedNoun" url={response.imgUrl} />
+      <Mic key="Mic" />
     </div>
   );
 }
