@@ -1,0 +1,20 @@
+{
+  "imgUrl": "/images/me/opac.png",
+  "navbar": {
+    "title": "Mohamed Sahnoun",
+    "items": [
+      {
+        "title": "home"
+      },
+      {
+        "title": "Education"
+      },
+      {
+        "title": "Work"
+      },
+      {
+        "title": "Contact"
+      }
+    ]
+  }
+}

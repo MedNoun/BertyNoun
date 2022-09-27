@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 5vw;
+  font-size: var(--fs_small);
+  font-family: "kalam";
+  font-weight: 600;
+}
+.items {
+  font-weight: 300;
+  width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
