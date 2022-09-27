@@ -1,4 +1,6 @@
 {
+  "passage": "my name is mohamed sahnoun, I am a software engineering student at the national institut of applied sciences and technology",
+  "word_combinations": ["go to", "show me", "navigate to"],
   "imgUrl": "/images/me/opac.png",
   "navbar": {
     "title": "Mohamed Sahnoun",
@@ -7,13 +9,13 @@
         "title": "home"
       },
       {
-        "title": "Education"
+        "title": "education"
       },
       {
-        "title": "Work"
+        "title": "work"
       },
       {
-        "title": "Contact"
+        "title": "contact"
       }
     ]
   }

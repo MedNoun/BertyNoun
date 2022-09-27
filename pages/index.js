@@ -11,7 +11,12 @@ function Home({ response }) {
     <div className="main">
       <Navbar key="navbar" data={response.navbar} />
       <MedNoun key="MedNoun" url={response.imgUrl} />
-      <Mic key="Mic" />
+      <Mic
+        key="Mic"
+        passage={response.passage}
+        combinations={response.word_combinations}
+        pages={response.navbar.items}
+      />
     </div>
   );
 }
