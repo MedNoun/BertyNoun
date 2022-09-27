@@ -11,7 +11,7 @@ export default function Mic() {
     transcript,
     listening,
     resetTranscript,
-    browserSupportSpeechRecognition,
+    browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
   const [clicked_mic, setClicked_mic] = useState(0);
   const [finish_animation, setFinish_animation] = useState(1);
@@ -31,7 +31,17 @@ export default function Mic() {
     },
   };
 
-  let mic = {};
+  function handleStart() {
+    setClicked_mic(1);
+    SpeechRecognition.startListening();
+  }
+
+  function handleStop() {
+    setClicked_mic(0);
+    setFinish_animation(0);
+    SpeechRecognition.stopListening();
+  }
+
   return (
     <div className="mic_container">
       <div className="circle">
@@ -42,16 +52,11 @@ export default function Mic() {
           layout="fill"
           objectFit="contain"
         />
-        <motion.div initial="" animate="" variants={mic} className="mic">
+        <motion.div className="mic">
           {clicked_mic == 1 ? (
             <Image
               key="2"
-              onClick={() => {
-                setClicked_mic(0);
-                setFinish_animation(0);
-                SpeechRecognition.startListening;
-                console.log("here it is ! ", transcript);
-              }}
+              onClick={handleStop}
               className="mic_photo"
               src="/images/icons/micstarts.gif"
               layout="fill"
@@ -60,7 +65,7 @@ export default function Mic() {
           ) : finish_animation == 1 ? (
             <Image
               key="3"
-              onClick={() => setClicked_mic(1)}
+              onClick={handleStart}
               className="mic_photo"
               src="/images/icons/mic.gif"
               layout="fill"
@@ -72,12 +77,7 @@ export default function Mic() {
             }, 550) && (
               <Image
                 key="4"
-                onClick={() => {
-                  setClicked_mic(1);
-                  SpeechRecognition.stopListening;
-                  console.log("here is the transcript : ", transcript);
-                  console.log(transcript);
-                }}
+                onClick={() => setClicked_mic(1)}
                 className="mic_photo"
                 src="/images/icons/micstop.gif"
                 layout="fill"

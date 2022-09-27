@@ -91,13 +91,14 @@ body {
   margin: auto;
 }
 
-
-
 .popover {
   bottom: 0;
   font-size: var(--fs_xsmall);
   border: 2px solid white;
   border-radius: 15px;
   padding: 8px 25px;
+  margin: auto;
+  max-width: 200px;
+  text-align: center;
   width: fit-content;
 }
