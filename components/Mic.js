@@ -31,17 +31,6 @@ export default function Mic() {
     },
   };
 
-  function handleStart() {
-    setClicked_mic(1);
-    SpeechRecognition.startListening();
-  }
-
-  function handleStop() {
-    setClicked_mic(0);
-    setFinish_animation(0);
-    SpeechRecognition.stopListening();
-  }
-
   return (
     <div className="mic_container">
       <div className="circle">
@@ -55,8 +44,11 @@ export default function Mic() {
         <motion.div className="mic">
           {clicked_mic == 1 ? (
             <Image
-              key="2"
-              onClick={handleStop}
+              onClick={() => {
+                setClicked_mic(0);
+                setFinish_animation(0);
+                SpeechRecognition.stopListening();
+              }}
               className="mic_photo"
               src="/images/icons/micstarts.gif"
               layout="fill"
@@ -64,8 +56,10 @@ export default function Mic() {
             />
           ) : finish_animation == 1 ? (
             <Image
-              key="3"
-              onClick={handleStart}
+              onClick={() => {
+                setClicked_mic(1);
+                SpeechRecognition.startListening();
+              }}
               className="mic_photo"
               src="/images/icons/mic.gif"
               layout="fill"
@@ -74,10 +68,12 @@ export default function Mic() {
           ) : (
             setTimeout(() => {
               setFinish_animation(1);
-            }, 550) && (
+            }, 500) && (
               <Image
-                key="4"
-                onClick={() => setClicked_mic(1)}
+                onClick={() => {
+                  setClicked_mic(1);
+                  SpeechRecognition.startListening();
+                }}
                 className="mic_photo"
                 src="/images/icons/micstop.gif"
                 layout="fill"
