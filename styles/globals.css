@@ -79,15 +79,17 @@ body {
   margin-right: auto;
   left: 0;
   right: 0;
-  height: 200px;
-  width: 200px;
+  height: calc(30px + var(--fs_xlarge));
+  width: calc(30px + var(--fs_xlarge));
 }
 
 .mic {
   top: 25%;
   overflow: hidden;
-  width: 75px;
-  height: 100px;
+  /* width:50px; and height*/
+  max-width: 60px;
+  max-height: 100px;
+  height: calc(var(--fs_xlarge) - 10px);
   margin: auto;
 }
 
@@ -98,7 +100,7 @@ body {
   border-radius: 15px;
   padding: 8px 25px;
   margin: auto;
-  max-width: 200px;
+  max-width: calc(50px + var(--fs_xlarge));
   text-align: center;
   width: fit-content;
 }

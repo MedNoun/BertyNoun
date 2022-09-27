@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "regenerator-runtime/runtime";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -15,6 +15,12 @@ export default function Mic() {
   } = useSpeechRecognition();
   const [clicked_mic, setClicked_mic] = useState(0);
   const [finish_animation, setFinish_animation] = useState(1);
+  const [text, setText] = useState("Ask something !");
+  useEffect(() => {
+    if (!browserSupportsSpeechRecognition) {
+      setText("Your browser does not support :(");
+    }
+  }, []);
 
   let popover_onstart = {
     hidden: {
@@ -84,9 +90,7 @@ export default function Mic() {
         </motion.div>
       </div>
       <motion.div initial="hidden" animate="visible" variants={popover_onstart}>
-        <div className="popover">
-          {transcript ? transcript : "Ask something about me"}
-        </div>
+        <div className="popover">{transcript ? transcript : text}</div>
       </motion.div>
     </div>
   );
